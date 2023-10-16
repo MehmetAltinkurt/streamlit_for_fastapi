@@ -16,6 +16,7 @@ def process(image, server_url: str):
 
     r = requests.post(
         server_url, data=m, headers={"Content-Type": m.content_type}, timeout=8000
+        , stream=True
     )
 
     return r
