@@ -49,7 +49,7 @@ if st.button("Get segmentation map"):
         img_stream = io.BytesIO(segments.content)
         segmented_image = cv.imdecode(np.frombuffer(img_stream.read(), np.uint8), cv.IMREAD_UNCHANGED)
         #segmented_image=segmented_image[:, :, ::-1]
-        st.write(segmented_image.shape,segmented_image.max(),"type:",type(segmented_image))
+        st.write("type:",type(segmented_image))
 
         #segmented_image = cv.imdecode(np.frombuffer(segments.content), 0)
         #segmented_image = Image.open(img).convert("RGB")
