@@ -40,9 +40,9 @@ if st.button("Get segmentation map"):
     if input_image:
         segments = process(input_image, backend)
         original_image = Image.open(input_image).convert("RGB")
-        byteImgIO = io.BytesIO(io.BytesIO(segments.content))
+        byteImgIO = io.BytesIO(segments.content)
         st.write(st.write("original image size",original_image.size))
-        segmented_image = Image.open().convert("RGB")
+        segmented_image = Image.open(byteImgIO).convert("RGB")
         col1.header("Original")
         col1.image(original_image, use_column_width=True)
         col2.header("Segmented")
