@@ -1,10 +1,12 @@
 import io
 
+import cv2 as cv
 import requests
+import PIL
 from PIL import Image
 from requests_toolbelt.multipart.encoder import MultipartEncoder
-import cv2 as cv
 import numpy as np
+
 import streamlit as st
 
 # interact with FastAPI endpoint
@@ -16,8 +18,7 @@ def process(image, server_url: str):
     m = MultipartEncoder(fields={"file": ("filename", image, "image/jpeg")})
 
     r = requests.post(
-        server_url, data=m, headers={"Content-Type": m.content_type}, timeout=8000
-        , stream=True
+        server_url, data=m, headers={"Content-Type": m.content_type}, timeout=8000, stream=True
     )
 
     return r
@@ -41,8 +42,18 @@ if st.button("Get segmentation map"):
     if input_image:
         segments = process(input_image, backend)
         original_image = Image.open(input_image).convert("RGB")
+        st.write("original image size",original_image.size)
+        #st.write("PIL Version:",PIL.__version__)
+
+        #stream=Image.new(mode='RGB',size=original_image.size)
         img_stream = io.BytesIO(segments.content)
         segmented_image = cv.imdecode(np.frombuffer(img_stream.read(), np.uint8), 1)
+
+
+
+        #segmented_image = cv.imdecode(np.frombuffer(segments.content), 0)
+        #segmented_image = Image.open(img).convert("RGB")
+        #st.write("segmented image size",segmented_image.getbands())
         col1.header("Original")
         col1.image(original_image, use_column_width=True)
         col2.header("Segmented")
