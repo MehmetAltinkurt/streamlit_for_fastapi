@@ -57,7 +57,7 @@ if st.button("Get segmentation map"):
         col1.header("Original")
         col1.image(original_image, use_column_width=True)
         col2.header("Segmented")
-        col2.image(segmented_image, use_column_width=True, channels="BGR")
+        col2.image(img_stream, use_column_width=True, channels="BGR")
 
     else:
         # handle case with no image
