@@ -4,6 +4,7 @@ import requests
 from PIL import Image
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import cv2 as cv
+import numpy as np
 import streamlit as st
 
 # interact with FastAPI endpoint
