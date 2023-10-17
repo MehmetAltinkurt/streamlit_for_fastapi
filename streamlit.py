@@ -42,19 +42,10 @@ if st.button("Get segmentation map"):
     if input_image:
         segments = process(input_image, backend)
         original_image = Image.open(input_image).convert("RGB")
-        st.write("original image size",original_image.size)
-        #st.write("PIL Version:",PIL.__version__)
 
-        #stream=Image.new(mode='RGB',size=original_image.size)
         img_stream = io.BytesIO(segments.content)
-        st.write(len(img_stream.getvalue()),"img stream type:",type(img_stream))
         segmented_image = cv.imdecode(np.frombuffer(img_stream.read(), np.uint8), cv.IMREAD_UNCHANGED)
-        #segmented_image=segmented_image[:, :, ::-1]
-        st.write("type:",type(segmented_image))
 
-        #segmented_image = cv.imdecode(np.frombuffer(segments.content), 0)
-        #segmented_image = Image.open(img).convert("RGB")
-        #st.write("segmented image size",segmented_image.getbands())
         col1.header("Original")
         col1.image(original_image, use_column_width=True)
         col2.header("Segmented")
