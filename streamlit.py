@@ -10,7 +10,7 @@ import numpy as np
 import streamlit as st
 
 # interact with FastAPI endpoint
-backend = "https://f146-176-233-27-186.ngrok-free.app/segmentation" #"http://fastapi:8000/segmentation"
+backend = " https://1efc-176-233-27-1.ngrok-free.app/segmentation" #"http://fastapi:8000/segmentation"
 
 
 def process(image, server_url: str):
@@ -25,10 +25,10 @@ def process(image, server_url: str):
 
 
 # construct UI layout
-st.title("DeepLabV3 image segmentation")
+st.title("YOLO image segmentation")
 
 st.write(
-    """Obtain semantic segmentation maps of the image in input via DeepLabV3 implemented in PyTorch.
+    """Obtain semantic segmentation maps of the image in input via YOLO implemented in PyTorch.
          This streamlit example uses a FastAPI service as backend.
          Visit this URL at `:8000/docs` for FastAPI documentation."""
 )  # description and instructions
