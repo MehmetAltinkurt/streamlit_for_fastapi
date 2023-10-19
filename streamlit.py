@@ -12,7 +12,7 @@ import streamlit as st
 # interact with FastAPI endpoint
 backend = " https://a80e-176-233-27-1.ngrok-free.app/segmentation" #"http://fastapi:8000/segmentation"
 
-
+#post request to fastapi endpoint
 def process(image, server_url: str):
 
     m = MultipartEncoder(fields={"file": ("filename", image, "image/jpeg")})
@@ -25,12 +25,11 @@ def process(image, server_url: str):
 
 
 # construct UI layout
-st.title("YOLO image segmentation")
+st.title("YOLO5 image segmentation")
 
 st.write(
     """Obtain semantic segmentation maps of the image in input via YOLO implemented in PyTorch.
-         This streamlit example uses a FastAPI service as backend.
-         Visit this URL at `:8000/docs` for FastAPI documentation."""
+         This streamlit example uses a FastAPI service as backend."""
 )  # description and instructions
 
 input_image = st.file_uploader("insert image")  # image upload widget
