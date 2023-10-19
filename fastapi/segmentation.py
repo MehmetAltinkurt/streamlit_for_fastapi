@@ -4,22 +4,20 @@ import torch
 from PIL import Image
 from torchvision import transforms
 
-# adapted from https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/
+# adapted from https://www.youtube.com/watch?v=IvHCxycjeR0
 
 
 def get_segmentator():
 
     model = torch.hub.load(
         "ultralytics/yolov5", "yolov5s", pretrained=True
-        #,weights="DeepLabV3_ResNet101_Weights.DEFAULT"
     )
     model.eval()
 
     return model
 
-
+#get the segmentation map
 def get_segments(model, binary_image, max_size=512):
-    print("get segment")
     input_image = Image.open(io.BytesIO(binary_image)).convert("RGB")
     width, height = input_image.size
     resize_factor = min(max_size / width, max_size / height)
