@@ -10,7 +10,7 @@ import numpy as np
 import streamlit as st
 
 # interact with FastAPI endpoint
-backend = " https://a80e-176-233-27-1.ngrok-free.app/segmentation" #"http://fastapi:8000/segmentation"
+backend = " https://6fbe-176-233-26-206.ngrok-free.app/segmentation" #"http://fastapi:8000/segmentation"
 
 #post request to fastapi endpoint
 def process(image, server_url: str):
